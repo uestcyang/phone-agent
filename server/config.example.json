@@ -1,0 +1,13 @@
+{
+  "state_directory": "./state",
+  "listen_host": "127.0.0.1",
+  "port": 8080,
+  "upload_port": 9080,
+  "runner_command": [
+    "python3",
+    "YOUR_ADAPTER_SCRIPT"
+  ],
+  "administrator_token": "GENERATE_LOCALLY_DO_NOT_COMMIT",
+  "native_environment": {},
+  "runner_timeout_seconds": 300
+}

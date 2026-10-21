@@ -1,0 +1,27 @@
+name: Bug report
+description: Report a reproducible problem using synthetic data.
+title: "[Bug] "
+body:
+  - type: markdown
+    attributes:
+      value: "Do not include tokens, real hostnames, user paths, private messages or personal screenshots."
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: OS and runtime versions; no device serial numbers or account identifiers.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Reproduction steps
+      description: A minimal example with synthetic content.
+    validations:
+      required: true
+  - type: textarea
+    id: behavior
+    attributes:
+      label: Expected and actual behavior
+    validations:
+      required: true

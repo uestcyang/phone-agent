@@ -1,0 +1,138 @@
+<?xml version='1.0' encoding='utf-8'?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_REMOTE_MESSAGING" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MICROPHONE" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
+    <uses-permission android:name="android.permission.USE_EXACT_ALARM" />
+    <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_SECURE_SETTINGS" />
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+    <uses-permission android:name="android.permission.READ_MEDIA_AUDIO" />
+    <uses-permission android:name="android.permission.READ_MEDIA_VIDEO" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" android:maxSdkVersion="32" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="moe.shizuku.manager.permission.API_V23" />
+    <application android:label="Phone Agent" android:name=".PhoneAgentApplication" android:icon="@drawable/ic_app" android:allowBackup="false" android:dataExtractionRules="@xml/data_extraction_rules" android:networkSecurityConfig="@xml/network_security_config">
+        <activity android:name=".MainActivity" android:exported="true" android:launchMode="singleTask" android:resizeableActivity="true" android:theme="@style/LaunchTheme" android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode" android:hardwareAccelerated="true" android:windowSoftInputMode="adjustResize">
+            <meta-data android:name="io.flutter.embedding.android.NormalTheme" android:resource="@style/NormalTheme" />
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.SEND" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="*/*" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.SEND_MULTIPLE" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="*/*" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:scheme="content" android:mimeType="*/*" />
+            </intent-filter>
+            <intent-filter android:label="交给手机 Agent">
+                <action android:name="android.intent.action.PROCESS_TEXT" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="text/plain" />
+            </intent-filter>
+            <meta-data android:name="android.app.shortcuts" android:resource="@xml/share_shortcuts" />
+        </activity>
+        <meta-data android:name="flutterEmbedding" android:value="2" />
+        <activity android:name=".QuickSendActivity" android:exported="true" android:theme="@style/QuickSendTheme" android:excludeFromRecents="true" android:taskAffinity="" android:launchMode="singleInstance" />
+        <activity android:name=".WidgetPreviewActivity" android:exported="false" android:theme="@android:style/Theme.Light.NoTitleBar" android:excludeFromRecents="true" android:taskAffinity="" android:launchMode="singleInstance" android:enabled="false" />
+        <service android:name=".KeepAliveForegroundService" android:process=":keepalive" android:foregroundServiceType="remoteMessaging" android:exported="false" />
+        <provider android:name=".DeviceBridgeProvider" android:authorities="${applicationId}.devicebridge" android:permission="android.permission.DUMP" android:process=":keepalive" android:exported="true" />
+        <service android:name=".RealtimeVoiceForegroundService" android:foregroundServiceType="microphone" android:exported="false" />
+        <service android:name=".MainProcessAnchorService" android:exported="false" />
+        <service android:name=".KeepAliveReviveJobService" android:process=":keepalive" android:permission="android.permission.BIND_JOB_SERVICE" android:exported="false" />
+        <receiver android:name=".BootReceiver" android:exported="false">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
+                <action android:name="com.htc.intent.action.QUICKBOOT_POWERON" />
+                <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
+            </intent-filter>
+        </receiver>
+        <receiver android:name=".KeepAliveBootReceiver" android:process=":keepalive" android:exported="false">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.QUICKBOOT_POWERON" />
+                <action android:name="com.htc.intent.action.QUICKBOOT_POWERON" />
+                <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
+            </intent-filter>
+        </receiver>
+        <receiver android:name=".KeepAliveWatchdogReceiver" android:process=":keepalive" android:exported="false" />
+        <receiver android:name=".WidgetRefreshPeriodReceiver" android:process=":keepalive" android:exported="true">
+            <intent-filter>
+                <action android:name="com.yjd.phoneagent.WIDGET_REFRESH_PERIOD" />
+            </intent-filter>
+        </receiver>
+        <receiver android:name=".HeartbeatAlarmReceiver" android:process=":keepalive" android:exported="false" />
+        <receiver android:name=".HeartbeatBridgeRelayReceiver" android:exported="false">
+            <intent-filter>
+                <action android:name="com.yjd.phoneagent.HEARTBEAT_TICK_RELAY" />
+                <action android:name="com.yjd.phoneagent.HEARTBEAT_NETWORK_RELAY" />
+            </intent-filter>
+        </receiver>
+        <receiver android:name=".ReplyReceiver" android:exported="false" />
+        <receiver android:name=".ShizukuSelfTestReceiver" android:exported="false" android:enabled="false">
+            <intent-filter>
+                <action android:name="com.yjd.phoneagent.SHIZUKU_SELFTEST" />
+                <action android:name="com.yjd.phoneagent.SHIZUKU_REQUEST_PERMISSION" />
+            </intent-filter>
+        </receiver>
+        <receiver android:name=".PushSelfTestReceiver" android:process=":keepalive" android:exported="false" android:enabled="false">
+            <intent-filter>
+                <action android:name="com.yjd.phoneagent.PUSH_SELFTEST" />
+            </intent-filter>
+        </receiver>
+        <receiver android:name=".WidgetTokenSelfTestReceiver" android:process=":keepalive" android:exported="false" android:enabled="false">
+            <intent-filter>
+                <action android:name="com.yjd.phoneagent.WIDGET_TOKEN_SELFTEST" />
+            </intent-filter>
+        </receiver>
+        <receiver android:name=".PrefsAuditReceiver" android:exported="false" android:enabled="false">
+            <intent-filter>
+                <action android:name="com.yjd.phoneagent.PREFS_AUDIT_MAIN" />
+            </intent-filter>
+        </receiver>
+        <receiver android:name=".PrefsAuditKeepaliveReceiver" android:process=":keepalive" android:exported="false" android:enabled="false">
+            <intent-filter>
+                <action android:name="com.yjd.phoneagent.PREFS_AUDIT_KEEPALIVE" />
+            </intent-filter>
+        </receiver>
+        <receiver android:name=".PushWidgetProvider" android:process=":keepalive" android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data android:name="android.appwidget.provider" android:resource="@xml/widget_info" />
+        </receiver>
+        <provider android:name=".WidgetTokenProvider" android:authorities="com.yjd.phoneagent.widgettoken" android:process=":keepalive" android:exported="false" />
+        <provider android:name="rikka.shizuku.ShizukuProvider" android:authorities="${applicationId}.shizuku" android:multiprocess="false" android:enabled="true" android:exported="true" android:permission="android.permission.INTERACT_ACROSS_USERS_FULL" />
+    </application>
+    <queries>
+        <intent>
+            <action android:name="android.speech.RecognitionService" />
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.TTS_SERVICE" />
+        </intent>
+        <intent>
+            <action android:name="android.intent.action.PROCESS_TEXT" />
+            <data android:mimeType="text/plain" />
+        </intent>
+    </queries>
+</manifest>

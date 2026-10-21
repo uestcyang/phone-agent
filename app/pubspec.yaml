@@ -1,0 +1,44 @@
+name: phone_agent_app
+description: "An Android client for self-hosted agent sessions and task execution."
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+version: 0.1.0+1
+
+environment:
+  sdk: ^3.12.2
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.8
+  web_socket_channel: ^3.0.3
+  shared_preferences: ^2.5.5
+  http: ^1.6.0
+  path_provider: ^2.1.5
+  package_info_plus: ^8.3.0
+  flutter_secure_storage: ^9.2.4
+  image_picker: ^1.2.3
+  image: ^4.9.1
+  file_picker: ^11.0.0
+  audioplayers: ^6.1.0
+  flutter_markdown_plus: ^1.0.12
+  markdown: ^7.3.1
+  open_filex: ^4.7.0
+  crypto: ^3.0.6
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^6.0.0
+
+dependency_overrides:
+  path_provider_android: 2.2.23
+
+
+flutter:
+
+  uses-material-design: true
+
+

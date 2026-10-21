@@ -1,0 +1,5 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">手机Agent</string>
+    <string name="widget_push_desc">Agent最新推送</string>
+</resources>

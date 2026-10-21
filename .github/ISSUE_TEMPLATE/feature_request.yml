@@ -1,0 +1,17 @@
+name: Feature or adapter proposal
+description: Propose a concrete workflow or supported native adapter.
+title: "[Proposal] "
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Workflow and missing capability
+    validations:
+      required: true
+  - type: textarea
+    id: design
+    attributes:
+      label: Proposed integration
+      description: Include supported invocation/authentication and a test plan. Never paste credentials.
+    validations:
+      required: true

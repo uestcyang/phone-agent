@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='utf-8'?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:id="@+id/widget_root" android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="horizontal" android:gravity="center_vertical" android:paddingStart="6dp" android:paddingEnd="6dp" android:paddingTop="4dp" android:paddingBottom="4dp" android:background="@drawable/widget_bg">
+    <LinearLayout android:id="@+id/widget_quota_container" android:layout_width="wrap_content" android:layout_height="match_parent" android:orientation="horizontal" android:gravity="center_vertical">
+        <TextView android:id="@+id/widget_metric_current" android:layout_width="38dp" android:layout_height="26dp" android:gravity="center" android:background="@drawable/widget_quota_current" android:text="--" android:textColor="#FFFFFF" android:textSize="10sp" android:textStyle="bold" android:fontFamily="sans-serif-black" android:contentDescription="当前周额度" />
+        <TextView android:id="@+id/widget_metric_refresh" android:layout_width="38dp" android:layout_height="26dp" android:layout_marginStart="2dp" android:gravity="center" android:background="@drawable/widget_quota_refresh" android:text="--" android:textColor="#FFFFFF" android:textSize="10sp" android:textStyle="bold" android:fontFamily="sans-serif-black" android:contentDescription="距周额度重置小时数" />
+        <TextView android:id="@+id/widget_metric_card_expiry" android:layout_width="34dp" android:layout_height="26dp" android:layout_marginStart="2dp" android:gravity="center" android:background="@drawable/widget_quota_card" android:text="--" android:textColor="#FFFFFF" android:textSize="10sp" android:textStyle="bold" android:fontFamily="sans-serif-black" android:contentDescription="最快到期重置卡剩余天数" />
+    </LinearLayout>
+    <TextView android:id="@+id/widget_wallet_balance" android:layout_width="38dp" android:layout_height="38dp" android:layout_marginStart="4dp" android:gravity="center" android:background="@drawable/widget_wallet_circle" android:text="--" android:textColor="#FFFFFF" android:textSize="10sp" android:textStyle="bold" android:fontFamily="sans-serif-black" android:singleLine="true" android:contentDescription="账户美元余额" />
+    <LinearLayout android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_marginStart="7dp" android:layout_marginEnd="5dp" android:orientation="vertical" android:gravity="center_vertical">
+        <TextView android:id="@+id/widget_status_badge" android:layout_width="match_parent" android:layout_height="wrap_content" android:visibility="gone" android:text="离线" android:textColor="#FFB74D" android:textSize="10sp" android:singleLine="true" android:ellipsize="end" />
+        <LinearLayout android:id="@+id/widget_row_alert" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical">
+            <TextView android:id="@+id/widget_machine_alert" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="全部正常" android:textColor="#78909C" android:textSize="12sp" android:singleLine="true" android:ellipsize="end" />
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout android:id="@+id/widget_claude_container" android:layout_width="wrap_content" android:layout_height="match_parent" android:orientation="horizontal" android:gravity="center_vertical">
+        <TextView android:id="@+id/widget_claude_current" android:layout_width="38dp" android:layout_height="26dp" android:gravity="center" android:background="@drawable/widget_claude_current" android:text="--" android:textColor="#FFFFFF" android:textSize="10sp" android:textStyle="bold" android:fontFamily="sans-serif-black" android:contentDescription="Grok Build 剩余额度" />
+        <TextView android:id="@+id/widget_claude_refresh" android:layout_width="38dp" android:layout_height="26dp" android:layout_marginStart="2dp" android:gravity="center" android:background="@drawable/widget_claude_refresh" android:text="--" android:textColor="#FFFFFF" android:textSize="10sp" android:textStyle="bold" android:fontFamily="sans-serif-black" android:contentDescription="Grok Bot 剩余额度" />
+    </LinearLayout>
+    <LinearLayout android:id="@+id/widget_row_middle" android:layout_width="0dp" android:layout_height="0dp" android:visibility="gone">
+        <LinearLayout android:id="@+id/widget_generic_container" android:layout_width="0dp" android:layout_height="0dp">
+            <ImageView android:id="@+id/widget_generic_dot" android:layout_width="0dp" android:layout_height="0dp" />
+            <TextView android:id="@+id/widget_generic_title" android:layout_width="0dp" android:layout_height="0dp" />
+            <TextView android:id="@+id/widget_generic_body" android:layout_width="0dp" android:layout_height="0dp" />
+            <TextView android:id="@+id/widget_generic_time" android:layout_width="0dp" android:layout_height="0dp" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
